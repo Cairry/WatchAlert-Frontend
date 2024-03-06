@@ -52,7 +52,10 @@ const RuleTemplateCreateModal = ({ visible, onClose, selectedRow, type, handleLi
       form.setFieldsValue({
         ruleName: selectedRow.ruleName,
         datasourceType: selectedRow.datasourceType,
-        ruleConfig: selectedRow.ruleConfig,
+        alicloudSLSConfig: selectedRow.alicloudSLSConfig,
+        lokiConfig: selectedRow.lokiConfig,
+        prometheusConfig: selectedRow.prometheusConfig,
+        severity: selectedRow.severity,
         evalInterval: selectedRow.evalInterval,
         forDuration: selectedRow.forDuration,
         annotations: selectedRow.annotations,
@@ -145,26 +148,24 @@ const RuleTemplateCreateModal = ({ visible, onClose, selectedRow, type, handleLi
 
           </div>
 
-          <MyFormItemGroup prefix={['ruleConfig']}>
+          <MyFormItemGroup prefix={['prometheusConfig']}>
             <MyFormItem name="promQL" label="PromQL">
               <Input />
             </MyFormItem>
-
-            <MyFormItem name="severity" label="告警等级"
-              rules={[
-                {
-                  required: true,
-                },
-              ]}>
-              <Radio.Group onChange={onChange} value={severityValue}>
-                <Radio value={0}>P0级告警</Radio>
-                <Radio value={1}>P1级告警</Radio>
-                <Radio value={2}>P2级告警</Radio>
-              </Radio.Group>
-            </MyFormItem>
-
-
           </MyFormItemGroup>
+
+          <MyFormItem name="severity" label="告警等级"
+            rules={[
+              {
+                required: true,
+              },
+            ]}>
+            <Radio.Group onChange={onChange} value={severityValue}>
+              <Radio value={0}>P0级告警</Radio>
+              <Radio value={1}>P1级告警</Radio>
+              <Radio value={2}>P2级告警</Radio>
+            </Radio.Group>
+          </MyFormItem>
 
           <div style={{ display: 'flex' }}>
             <MyFormItem
